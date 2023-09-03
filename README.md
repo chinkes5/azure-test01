@@ -7,6 +7,7 @@ There are several terraform files to describe each kind of resource with a varia
 ## Source Material
 * [Starting with the Terraform example] (https://learn.hashicorp.com/tutorials/terraform/azure-build?in=terraform/azure-get-started)
 * [Adding Terragrunt into the mix] (https://gaunacode.com/using-terragrunt-to-deploy-to-azure)
+* [2hr YouTube video on making Azure stuff with Terraform] (https://www.youtube.com/watch?v=V53AHWun17s)
 
 ## Step 0
 Things I had to do to get this so it would work-
