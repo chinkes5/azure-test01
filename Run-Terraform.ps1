@@ -1,10 +1,11 @@
 If ((Read-Host "Ready to start [y/N]") -eq "y") {
     # Read the contents of the secrets file
-    $secretsFile = "secrets.txt"
-    $secretsContent = Get-Content -Path $secretsFile
+    # $secretsFile = "secrets.txt"
+    # $secretsContent = Get-Content -Path $secretsFile
 
     # Set the value as an environment variable for this session
-    $env:ARM_ACCESS_KEY = $secretsContent
+    # $env:ARM_ACCESS_KEY = $secretsContent
+    $env:ARM_ACCESS_KEY = $(az keyvault secret show --name TF-stateStorage --vault-name TF-stateStorage --query value -o tsv)
     terraform init -input=false -backend-config="access_key=$env:ARM_ACCESS_KEY"
 
     $varFile = Read-Host "Path\Name of var-file, or blank if none"
@@ -41,7 +42,7 @@ If ((Read-Host "Ready to start [y/N]") -eq "y") {
                 else {
                     terraform plan -out plan.out -var-file $varFile -destroy
                 }
-                if ((Read-Host "`u{1f622} ready to destroy [y/n]") -eq "y") {
+                if ((Read-Host "`u{1f622} ready to destroy [y/N]") -eq "y") {
                     Write-Output "Destroying..."
                     terraform apply "plan.out"
                 }
