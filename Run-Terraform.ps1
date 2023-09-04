@@ -28,11 +28,14 @@ If ((Read-Host "Ready to start [y/N]") -eq "y") {
             "a" {
                 Write-Output "Applying plan..."
                 if ([string]::IsNullOrEmpty($varFile)) {
-                    terraform apply "plan.out"
+                    terraform apply -auto-approve "plan.out"
                 }
-                else {
+                elseif (Test-Path $varFile -PathType Leaf) {
                     terraform apply -var-file $varFile "plan.out"
                 }
+                else {
+                    terraform apply -auto-approve
+                }            
             }
             "d" {
                 Write-Output "Planning destroy..."
