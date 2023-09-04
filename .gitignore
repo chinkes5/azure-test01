@@ -30,3 +30,4 @@ override.tf.json
 get-started.bat
 .terraform.lock.hcl
 secrets.txt
+plan.out

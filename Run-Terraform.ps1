@@ -1,11 +1,11 @@
-If ((Read-Host "Ready to start [y/n]") -eq "y") {
+If ((Read-Host "Ready to start [y/N]") -eq "y") {
     # Read the contents of the secrets file
     $secretsFile = "secrets.txt"
     $secretsContent = Get-Content -Path $secretsFile
 
     # Set the value as an environment variable for this session
-    $env:TF_VAR_storage_account_access_key = $secretsContent
-    terraform init -input=false
+    $env:ARM_ACCESS_KEY = $secretsContent
+    terraform init -input=false -backend-config="access_key=$env:ARM_ACCESS_KEY"
 
     $varFile = Read-Host "Path\Name of var-file, or blank if none"
     do {
@@ -13,7 +13,7 @@ If ((Read-Host "Ready to start [y/n]") -eq "y") {
         switch ($response) {
             "i" {
                 Write-Output "Initiallizing (again?)..."
-                terraform init
+                terraform init -backend-config="access_key=$env:ARM_ACCESS_KEY"
             }
             "p" {
                 Write-Output "Running plan..."

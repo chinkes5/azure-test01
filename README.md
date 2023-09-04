@@ -23,4 +23,6 @@ Things I had to do to get this so it would work-
 4. Make a storage location to store state files
    - Create an Azure storage account: `az storage account create --name chinkesterraformstorage --resource-group Terraform-StateFiles --location westus2 --sku Standard_LRS`
    - Create a container within the storage account: `az storage container create --name statefiles --account-name Terraform-Storage --account-key <storage_account_access_key>`
+   - You can read the `<storage_account_access_key>` and set it as an environment variable with this: `$env:ARM_ACCESS_KEY = $(az keyvault secret show --name TF-stateStorage --vault-name TF-stateStorage --query value -o tsv)`
+   - When initalizing Terraform, use `-backend-config="access_key=$env:ARM_ACCESS_KEY"` option to pass in the `<storage_account_access_key>`
 
