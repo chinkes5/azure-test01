@@ -9,8 +9,8 @@ If ((Read-Host "Ready to start [y/N]") -eq "y") {
 
     $varFile = Read-Host "Path\Name of var-file, or blank if none"
     do {
-        $response = Read-Host “Press I, P, A, D, or Q”
-        switch ($response) {
+        $response = Read-Host “Press I, F, V, P, A, D, or Q”
+        switch ($response.ToLower()) {
             "i" {
                 Write-Output "Initiallizing (again?)..."
                 terraform init -backend-config="access_key=$env:ARM_ACCESS_KEY"
@@ -49,6 +49,10 @@ If ((Read-Host "Ready to start [y/N]") -eq "y") {
             "v" {
                 Write-Output "Validating Terraform"
                 terraform validate
+            }
+            "f" {
+                Write-Output "Validating Terraform"
+                terraform fmt
             }
             "q" {
                 Write-Output "All done! `u{1f60e}"
