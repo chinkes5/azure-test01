@@ -28,3 +28,5 @@ Things I had to do to get this so it would work-
 
 ## Step 1
 You will likely have to run the step 0.2 login stuff whenever you open this again.
+
+I left off [here](https://www.youtube.com/watch?v=V53AHWun17s&t=2640s)
