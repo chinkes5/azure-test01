@@ -13,7 +13,7 @@ If ((Read-Host "Ready to start [y/N]") -eq "y") {
         $response = Read-Host “Press I, F, V, P, A, D, or Q”
         switch ($response.ToLower()) {
             "i" {
-                Write-Output "Initiallizing (again?)..."
+                Write-Output "Initializing (again?)..."
                 terraform init -backend-config="access_key=$env:ARM_ACCESS_KEY"
             }
             "p" {
@@ -63,7 +63,7 @@ If ((Read-Host "Ready to start [y/N]") -eq "y") {
                 break
             }
             Default {
-                Write-Output "`u{1f611} Didn't undestand that, please try again"
+                Write-Output "`u{1f611} Didn't understand that, please try again"
                 Write-Output "P = plan`nA = apply`nD = destroy (with verification)`nQ = quit"
             }
         }

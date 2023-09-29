@@ -26,8 +26,13 @@ resource "azurerm_virtual_machine" "myTF-VM" {
     admin_password = ""
   }
 
+  admin_ssh_key {
+    username = "adminuser"
+    public_key = file()
+  }
+
   os_profile_linux_config {
-    disable_password_authentication = false
+    disable_password_authentication = true
   }
 
   tags = {
